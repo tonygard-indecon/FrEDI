@@ -50,9 +50,9 @@ temp_rcp85 <- read.csv("2-FrEDI_rcp85.csv", sep = ",") %>%
   mutate(scenario = "RCP85")
 
 
-
 # Combine dfs, convert to billions
 
 combined <- as_tibble(rbind(temp_rcp26,temp_rcp45, temp_rcp60, temp_rcp85)) %>% 
   mutate(annual_impacts = annual_impacts/10^9) 
 
+write.csv(combined, "RCP_impacts.csv", row.names=F)
