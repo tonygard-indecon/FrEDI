@@ -92,11 +92,10 @@ combine <- rbind(temp_1p5, temp_paris, temp_7wm2, rf_1p5, rf_paris, rf_7wm2)
   facet_wrap(~variable, scales = "free")
 
 #### Convert to CONUS ####
-#  Global to CONUS mean temperature change estimated as CONUS Temp = 1.3*Global Temp + 0.34
- # from Sarofim et al., 2021 - climatic change
- temp_1p5 <- mutate(temp_1p5, value = (0.34 + value * 1.3))
- temp_paris <- mutate(temp_paris, value = (0.34 + value * 1.3))
- temp_7wm2 <- mutate(temp_7wm2, value = (0.34 + value * 1.3))
+#  Global to CONUS mean temperature change estimated as CONUS Temp = 1.42*Global Temp
+ temp_1p5 <- mutate(temp_1p5, value = (value * 1.42))
+ temp_paris <- mutate(temp_paris, value = (value * 1.42))
+ temp_7wm2 <- mutate(temp_7wm2, value = (value * 1.42))
 
  #### Temperature relative to 1986-2005 ####
  # using 1995 as mid point
@@ -110,5 +109,5 @@ combine <- rbind(temp_1p5, temp_paris, temp_7wm2, rf_1p5, rf_paris, rf_7wm2)
  
  #### Save outputs ####
 write.csv(temp_1p5, file = "1-temp_1p5.csv", row.names = F)
-write.table(temp_paris, file = "1-temp_paris.csv", row.names = F)
-write.table(temp_7wm2, file = "1-temp_7wm2.csv", row.names = F)
+write.csv(temp_paris, file = "1-temp_paris.csv", row.names = F)
+write.csv(temp_7wm2, file = "1-temp_7wm2.csv", row.names = F)
