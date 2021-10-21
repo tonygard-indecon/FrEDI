@@ -66,9 +66,12 @@ diff <- mutate(timeseries_7wm2, diff = timeseries_7wm2$annual_impacts - timeseri
 write.csv(diff, file = "3-climateimpacts.csv", row.names = F)
 
 #### calculate national total ####
-nt_2050 <- filter(diff, year == 2050) %>% 
-  mutate(sum(annual_impacts))
+nt_2050 <- as_tibble(filter(diff, year == 2050)) %>% 
+  mutate(sum = sum(annual_impacts)) %>% 
+  # conversion from 2015$ to 2017$ to match Non-CO2 MACCs
+  mutate(sum17 = sum*107.747/104.691)
 
 nt_2100 <- filter(diff, year == 2090) %>% 
-  mutate(sum(annual_impacts))
+  mutate(sum=sum(annual_impacts)) %>% 
+  mutate(sum17 = sum*107.747/104.691)
 
