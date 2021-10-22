@@ -1,9 +1,10 @@
 The data provided in this folder corresponds to the inputs and outputs for Scott Burgess OMB EOP using FrEDI v2.0. October 2021.
 
+For more information on FrEDI: www.epa.gov/cira/fredi
+
 Temperature inputs from the climate emulator FaIR v1.6.2 for the 4 RCPs (RCP26, RCP45, RCP60, RCP85)
 https://github.com/OMS-NetZero/FAIR
 
-For more information on FrEDI: www.epa.gov/cira/fredi
 
 5 sectors:
 Air Quality - Premature Mortality from Ozone and PM2.5
