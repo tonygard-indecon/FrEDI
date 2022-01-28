@@ -1,7 +1,8 @@
 Package: FrEDI
 Title: The Framework for Evaluating Damages and Impacts (FrEDI)
 Version: 2.0
-Authors: U.S. Environmental Protection Agency (EPA) <https://epa.gov/cira/FrEDI>
+Authors: U.S. Environmental Protection Agency (EPA)
+        <https://epa.gov/cira/FrEDI>
 URL: https://epa.gov/cira/FrEDI/
 Description: This R package models damages and impacts from climate change in the contiguous United States (CONUS) using the Framework for Evaluating Damages and Impacts 
     developed as part of the Climate Change Impacts and Risk Analysis (CIRA) project at the U.S. Environmental 
@@ -9,13 +10,11 @@ Description: This R package models damages and impacts from climate change in th
     projecting impacts from climate change and sea level rise for a selected set of sectors.
 License: file LICENSE
 Encoding: UTF-8
-Depends: R (>= 3.5.0),
-    dplyr,
-    ggplot2,
-    tidyr
+Depends: R (>= 3.5.0), dplyr, ggplot2, tidyr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 LazyData: TRUE
 Suggests: knitr, rmarkdown, prettydoc
 VignetteBuilder: knitr
-    
+NeedsCompilation: no
+Packaged: 2022-01-18 23:52:48 UTC; KNoiva
