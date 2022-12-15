@@ -1,5 +1,7 @@
 on:
   push:
+    branches:
+      - test_dev_tkg
     paths:
       - docs/my-document.Rmd
 
