@@ -1,7 +1,7 @@
 on:
   push:
     paths:
-      - createSystemData/`1_configure_FrEDI_Main.Rmd`
+      - 'createSystemData/1_configure_FrEDI_Main.Rmd'
 
 name: Render my document
 
