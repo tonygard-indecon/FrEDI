@@ -1,9 +1,9 @@
 on:
   push:
     paths:
-      - createSystemData/1_configure_FrEDI_Main.Rmd
+      - analysis/qc/20221027/example_testing.Rmd
 
-name: Render configure FrEDI
+name: Render FrEDI Output test example
 
 jobs:
   render:
@@ -15,11 +15,11 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - uses: r-lib/actions/setup-tinytex@v1
       - name: Install rmarkdown
-        run: Rscript -e 'install.packages(c("rmarkdown", "tidyverse", "openxlsx", "devtools"))'
+        run: Rscript -e 'install.packages(c("rmarkdown", "tidyverse", "DT", "testthat"))'
       - name: Render my document to all types
-        run: Rscript -e 'rmarkdown::render("createSystemData/1_configure_FrEDI_Main.Rmd", output_format = "all")'
+        run: Rscript -e 'rmarkdown::render("analysis/qc/20221027/example_testing.Rmd", output_format = "html_document")'
       - name: Commit results
         run: |
-          git add createSystemData/1_configure_FrEDI_Main*
-          git commit -m 'config_fredi' || echo "No changes to commit"
+          git add analysis/qc/20221027/example_testing*
+          git commit -m 'Test fredi' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
