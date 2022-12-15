@@ -1,7 +1,7 @@
 on:
   push:
     paths:
-      - 'createSystemData/1_configure_FrEDI_Main.Rmd'
+      - createSystemData/1_configure_FrEDI_Main.Rmd
 
 name: Render configure FrEDI
 
@@ -15,7 +15,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - uses: r-lib/actions/setup-tinytex@v1
       - name: Install rmarkdown
-        run: Rscript -e 'install.packages(c("rmarkdown","tidyverse","openxlsx","devtools")'
+        run: Rscript -e 'install.packages(c("rmarkdown", "tidyverse", "openxlsx", "devtools"))'
       - name: Render my document to all types
         run: Rscript -e 'rmarkdown::render("createSystemData/1_configure_FrEDI_Main.Rmd", output_format = "all")'
       - name: Commit results
