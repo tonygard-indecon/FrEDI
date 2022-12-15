@@ -3,7 +3,7 @@ on:
     paths:
       - 'createSystemData/1_configure_FrEDI_Main.Rmd'
 
-name: Render my document
+name: Render configure FrEDI
 
 jobs:
   render:
@@ -15,11 +15,11 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - uses: r-lib/actions/setup-tinytex@v1
       - name: Install rmarkdown
-        run: Rscript -e 'install.packages("rmarkdown")'
+        run: Rscript -e 'install.packages(c("rmarkdown","tidyverse","openxlsx","devtools")'
       - name: Render my document to all types
-        run: Rscript -e 'rmarkdown::render("docs/my-document.Rmd", output_format = "all")'
+        run: Rscript -e 'rmarkdown::render("createSystemData/1_configure_FrEDI_Main.Rmd", output_format = "all")'
       - name: Commit results
         run: |
-          git add docs/my-document*
-          git commit -m 'Re-build my-document' || echo "No changes to commit"
+          git add createSystemData/1_configure_FrEDI_Main*
+          git commit -m 'config_fredi' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
