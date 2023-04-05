@@ -21,14 +21,19 @@ jobs:
     # copy files
     - name: Render Markdown
       run: |
-        Rscript -e 'rmarkdown::render("./docs/my-document.Rmd", output_format = "md_document")'
+        Rscript -e 'rmarkdown::render("./docs/my-document.Rmd")'
     # upload new documentation
     - name: publish to github
-      if: github.event_name != 'pull_request'
       run: |
-        git config --global user.name "user mane"
-        git config --global user.email "user email"
-        export VERSION=${GITHUB_REF##*/}
-        git add --all *
-        git commit -m "Build markdown" || true
-        git push -q origin test_dev_tkg
+        git config --local core.autocrlf false
+        git config --local user.email "${{ github.actor }}@users.noreply.github.com"
+        git config --local user.name "${{ github.actor }}"
+        git add . && git add --renormalize .
+        git pull origin ${{ github.head_ref }} --autostash --rebase -X ours
+        git commit --allow-empty -am "AUTO-GH ACTION: ${{ github.workflow }}"
+        NO_PAGER=1 git --no-pager diff HEAD^
+    - name: Push changes
+      uses: ad-m/github-push-action@test_dev_tkg
+      with:
+        branch: ${{ github.head_ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
