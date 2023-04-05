@@ -33,7 +33,7 @@ jobs:
         git commit --allow-empty -am "AUTO-GH ACTION: ${{ github.workflow }}"
         NO_PAGER=1 git --no-pager diff HEAD^
     - name: Push changes
-      uses: ad-m/github-push-action@test_dev_tkg
+      uses: ad-m/github-push-action@master
       with:
         branch: ${{ github.head_ref }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
