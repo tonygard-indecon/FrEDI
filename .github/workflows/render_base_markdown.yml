@@ -19,9 +19,9 @@ jobs:
       run: |
         Rscript -e 'install.packages(c("rmarkdown"))'
     # copy files
-    - name: Render README
-        run: |
-          Rscript -e 'rmarkdown::render("./docs/my-document.Rmd", output_format = "md_document")'
+    - name: Render Markdown
+      run: |
+        Rscript -e 'rmarkdown::render("./docs/my-document.Rmd", output_format = "md_document")'
     # upload new documentation
     - name: publish to github
       if: github.event_name != 'pull_request'
