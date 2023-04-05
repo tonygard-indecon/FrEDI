@@ -34,8 +34,9 @@ jobs:
         git pull origin ${{ github.head_ref }} --autostash --rebase -X ours
         git commit --allow-empty -am "AUTO-GH ACTION: ${{ github.workflow }}"
         NO_PAGER=1 git --no-pager diff HEAD^
+        git push origin
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        branch: ${{ github.head_ref }}
+        branch: test_dev_tkg
         github_token: ${{ secrets.GITHUB_TOKEN }}
