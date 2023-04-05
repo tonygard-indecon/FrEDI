@@ -20,6 +20,9 @@ jobs:
         run: Rscript -e 'rmarkdown::render("docs/my-document.Rmd", output_format = "all")'
       - name: Commit results
         run: |
+          git config --local core.autocrlf false
+          git config --local user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --local user.name "${{ github.actor }}"
           git add docs/my-document*
           git commit -m 'Re-build my-document' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
