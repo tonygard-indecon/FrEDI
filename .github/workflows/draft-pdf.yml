@@ -13,7 +13,7 @@ jobs:
       - name: Render document
         uses: lc5415/rmarkdown-action@v1
         with:
-          input_file: paper/paper.Rmd
+          input_file: ./paper/paper.Rmd
 	        output_format: pdf_document
       - name: Commit files
         run: |
