@@ -1,0 +1,19 @@
+name: Update Syste Data
+
+on: [push]
+  
+jobs:
+  render_document:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Commit results
+        run: |
+          git pull https://github.com/USEPA/FrEDI_Data.git main
+          git config --local core.autocrlf false
+          git config --local user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --local user.name "${{ github.actor }}"
+          git add *
+          git pull origin ${{ github.head_ref }} --autostash --rebase -X ours
+          git commit -a -m "update systemdata"
+          git push 
