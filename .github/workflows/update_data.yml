@@ -10,6 +10,7 @@ jobs:
       - name: Commit results
         run: |
           git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git data_only_branch_tkg --allow-unrelated-histories
+          git commit --amend --reset-author
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add --all
