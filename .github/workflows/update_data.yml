@@ -18,4 +18,5 @@ jobs:
           git add createSystemData/new_data
           git status
           git commit -m "add data"
+          git remote -v
           git push
