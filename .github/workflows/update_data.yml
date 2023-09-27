@@ -3,17 +3,15 @@ name: Update System Data
 on: [push]
   
 jobs:
-  render_document:
+  get_data:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Commit results
         run: |
           git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git data_only_branch_tkg --allow-unrelated-histories
-          git config --local core.autocrlf false
-          git config --local user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --local user.name "${{ github.actor }}"
-          git add *
-          git pull origin ${{ github.head_ref }} --autostash --rebase -X ours
-          git commit -a -m "update systemdata"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --all
+          git commit -am "add data"
           git push 
