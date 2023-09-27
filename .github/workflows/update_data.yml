@@ -14,4 +14,4 @@ jobs:
           git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git data_only_branch_tkg --allow-unrelated-histories
           git add data_new/*
           git commit -am "add data"
-          git push 
+          git push origin/fredi_data_cp_data_tkg
