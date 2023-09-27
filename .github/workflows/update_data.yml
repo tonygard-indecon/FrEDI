@@ -13,9 +13,9 @@ jobs:
           git config --global user.name "GitHub Actions"
           git branch --set-upstream-to origin/fredi_data_cp_data_tkg
           git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git data_only_branch_tkg --allow-unrelated-histories
-          git status
+          mv data_new createSystemData/new_data
           git branch --show-current
-          git add data_new/*
+          git add createSystemData/new_data
           git status
           git commit -m "add data"
           git push origin/fredi_data_cp_data_tkg
