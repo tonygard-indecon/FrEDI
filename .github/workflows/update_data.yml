@@ -19,4 +19,4 @@ jobs:
           git status
           git commit -m "add data"
           git remote -v
-          git push
+          git push --force
