@@ -18,4 +18,4 @@ jobs:
           git add createSystemData/new_data
           git status
           git commit -m "add data"
-          git push origin/fredi_data_cp_data_tkg
+          git push
