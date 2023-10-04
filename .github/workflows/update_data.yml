@@ -11,7 +11,7 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git main --allow-unrelated-histories
+          git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git main --allow-unrelated-histories -X ours
           mv data createSystemData/data
           git branch --show-current
           git add createSystemData/data
