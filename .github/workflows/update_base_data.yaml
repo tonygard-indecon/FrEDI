@@ -1,0 +1,34 @@
+name: Update System Data
+
+on: 
+  workflow_dispatch:
+    inputs:
+      fredi_data_branches:
+        type: choice
+        description: Which branch of FrEDI_data to pull in data from
+        options:
+          - main
+          - state_data
+          - state_data
+          - data_only_branch_tkg
+          - initial_actions
+          - initial_actions_tkg
+  
+jobs:
+  get_data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Commit results
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git branch --set-upstream-to origin/${{ github.event.inputs.fredi_data_branches }}
+          git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git ${{ github.event.inputs.fredi_data_branches }} --allow-unrelated-histories
+          mv data_new/sysdata.rda FrEDI/R/sysdata.rda
+          git branch --show-current
+          git add FrEDI/R/sysdata.rda
+          git pull origin ${{ github.head_ref }} --autostash --rebase -X ours
+          git status
+          git commit -am "add new sysdata.rda from ${{ github.event.inputs.fredi_data_branches }}"
+          git push
