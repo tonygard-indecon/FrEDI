@@ -18,4 +18,4 @@ jobs:
           git add createSystemData/new_data
           git status
           git commit -am "add data"
-          git push
+          git push -f
