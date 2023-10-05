@@ -16,7 +16,6 @@ jobs:
           cp -r data_new createSystemData/new_data
           git branch --show-current
           git add createSystemData/new_data
-          git pull origin ${{ github.head_ref }} --autostash --rebase -X ours
           git status
           git commit -am "add data"
           git push
