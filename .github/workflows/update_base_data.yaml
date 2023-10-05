@@ -1,4 +1,4 @@
-name: Update System Data
+name: Update Base System Data
 
 on: 
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git branch --set-upstream-to origin/${{ github.event.inputs.fredi_data_branches }}
           git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git ${{ github.event.inputs.fredi_data_branches }} --allow-unrelated-histories
-          mv data_new/sysdata.rda FrEDI/R/sysdata.rda
+          rsync data_new/sysdata.rda FrEDI/R/sysdata.rda
           git branch --show-current
           git add FrEDI/R/sysdata.rda
           git pull origin ${{ github.head_ref }} --autostash --rebase -X ours

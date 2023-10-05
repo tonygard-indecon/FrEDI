@@ -1,4 +1,4 @@
-name: Update System Data
+name: Update SV ImpactsList Data
 
 on: 
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git branch --set-upstream-to origin/${{ github.event.inputs.sv_impact_type }}
           git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git ${{ github.event.inputs.sv_impact_type }} --allow-unrelated-histories
-          mv data_new/sv/${{ github.event.inputs.sv_impact_type }}* FrEDI/R/
+          rsync data_new/sv/${{ github.event.inputs.sv_impact_type }}* FrEDI/R/
           git branch --show-current
           git add FrEDI/R/${{ github.event.inputs.sv_impact_type }}*
           git pull origin ${{ github.head_ref }} --autostash --rebase -X ours
