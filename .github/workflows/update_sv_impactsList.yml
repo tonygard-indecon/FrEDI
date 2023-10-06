@@ -3,6 +3,16 @@ name: Update SV ImpactsList Data
 on: 
   workflow_dispatch:
     inputs:
+      fredi_data_branches:
+        type: choice
+        description: Which branch of FrEDI_data to pull in data to
+        options:
+          - main
+          - state_data
+          - state_data
+          - data_only_branch_tkg
+          - initial_actions
+          - initial_actions_tkg
       sv_impact_type:
         type: choice
         description: Which branch SV impact type data object to update
@@ -24,7 +34,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git branch --set-upstream-to origin/${{ github.event.inputs.sv_impact_type }}
-          git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git ${{ github.event.inputs.sv_impact_type }} --allow-unrelated-histories
+          git pull --depth=1 --ff https://github.com/USEPA/FrEDI_Data.git fredi_data_branches --allow-unrelated-histories
           rsync data_new/sv/${{ github.event.inputs.sv_impact_type }}* FrEDI/R/
           git branch --show-current
           git add FrEDI/R/${{ github.event.inputs.sv_impact_type }}*

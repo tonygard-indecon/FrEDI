@@ -13,7 +13,7 @@ on:
           - data_only_branch_tkg
           - initial_actions
           - initial_actions_tkg
-  
+      
 jobs:
   get_data:
     runs-on: ubuntu-latest
