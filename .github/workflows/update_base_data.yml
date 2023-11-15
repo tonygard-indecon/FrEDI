@@ -25,3 +25,4 @@ jobs:
           git status
           git commit -am "add new sysdata.rda from ${{ github.event.inputs.fredi_data_branches }}"
           git push
+          rm -r data
