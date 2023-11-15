@@ -21,8 +21,8 @@ jobs:
           mv data/tmp_sysdata.rda FrEDI/R/sysdata.rda
           git branch --show-current
           git add FrEDI/R/sysdata.rda
+          git rm -r data
           git pull origin ${{ github.head_ref }} --autostash --rebase -X ours
           git status
           git commit -am "add new sysdata.rda from ${{ github.event.inputs.fredi_data_branches }}"
           git push
-          rm -r data
