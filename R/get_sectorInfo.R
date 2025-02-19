@@ -5,8 +5,8 @@
 #' This helper function returns a character vector of sector names (default) *or* a data frame of sectors with related information (e.g., associated variants, impact types, etc.), which the user can supply to the [FrEDI::run_fredi()] `sectorList` argument.
 #'
 #' @param description = FALSE. Logical value indicating whether to include information about each sector. Returns a dataframe if `description=TRUE` and returns a character vector of sector names if `description=FALSE` (default).
-#' @param gcmOnly = FALSE. Logical value indicating whether to return only sectors with climate impacts modeled using global climate model (GCM) results.
-#' @param slrOnly = FALSE. Logical value indicating whether to return only sectors with climate impacts modeled using sea level rise (SLR) scenarios.
+#' @param gcmOnly = FALSE. Logical value indicating whether to return only sectors with impacts driven by temperature change.
+#' @param slrOnly = FALSE. Logical value indicating whether to return only sectors with impacts driven by sea level change.
 #'
 #' @details
 #' If `description=FALSE` (default), this helper function returns a character vector of sector names, which the user can supply to the `sectorList` argument to [FrEDI::run_fredi()]. If `description=TRUE`, `get_sectorInfo()` returns dataframe of sectors with related information returns a dataframe containing the sectors available for FrEDI along with additional information. Sector names are in the first column, with additional columns for the associated model type ("GCM" or "SLR"), variants, impact years, and impact types in the remaining columns. Variants, impact years, and impact types vary by sector.
@@ -41,38 +41,35 @@
 ###
 ###
 get_sectorInfo <- function(
-    description=F,
-    gcmOnly=F,
-    slrOnly=F
+    description = F,
+    gcmOnly     = F,
+    slrOnly     = F
 ){
-  if((description |> is.null())){description<-F}
-  if((gcmOnly     |> is.null())){gcmOnly    <-F}
-  if((slrOnly     |> is.null())){slrOnly    <-F}
-  # co_sectorsRef$sector_label
-  # assign("co_sectorsRef", rDataList[["co_sectors"]])
-  co_sectorsRef  <- "co_sectorsRef" |> get_frediDataObj("frediData")
-
+  ### Get objects
+  co_sectorsRef <- "co_sectorsRef" |> get_frediDataObj("frediData")
+  ### Select and rename
   co_sectorsRef <- co_sectorsRef |>
     select(-c("sector_id")) |>
     rename(sector     = sector_label) |>
     rename(model_type = modelType) |>
     mutate(model_type = model_type |> toupper())
   ### Sort
-  co_sectorsRef <- co_sectorsRef |> arrange_at(vars("sector"))
+  co_sectorsRef <- co_sectorsRef |> arrange_at(c("sector"))
   ### GCM or SLR
-  gcm_string <- "GCM"
+  gcm_string    <- "GCM"
   if(gcmOnly){
-    co_sectorsRef <- co_sectorsRef |> filter(model_type==gcm_string)
+    co_sectorsRef <- co_sectorsRef |> filter(model_type == gcm_string)
   } else if(slrOnly){
-    co_sectorsRef <- co_sectorsRef |> filter(model_type!=gcm_string)
+    co_sectorsRef <- co_sectorsRef |> filter(model_type != gcm_string)
   } ### End if(gcmOnly)
 
   ### If not description, return names only
   if(!description){
-    return_obj <- co_sectorsRef$sector
+    return_obj <- co_sectorsRef |> pull(sector)
   } else{
-    return_obj <- co_sectorsRef |> as.data.frame()
+    return_obj <- co_sectorsRef
   } ### End if(!description)
 
+  ### Return
   return(return_obj)
 }
