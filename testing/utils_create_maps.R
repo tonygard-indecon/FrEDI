@@ -64,11 +64,11 @@ addData2Map <- function(
 ){
   ### Add impact data to state map data
   df0   <- df0 |> mutate(state_lc=state |> tolower())
-  gons0 <- gons0 |> left_join(df0, by="state_lc") |> relocate(c("state_lc"), .after="state")
-  gons0 |> pull(state_lc) |> unique() |> print()
+  gons0 <- gons0 |> left_join(df0, by=join0, relationship = "many-to-many") |> relocate(all_of(join0), .after="state")
+  #gons0 |> pull(state_lc) |> unique() |> print()
   ### Filter data
   gons0 <- gons0 |> filter(!(state |> is.na()))
-  gons0 |> pull(state_lc) |> unique() |> print()
+  #gons0 |> pull(state_lc) |> unique() |> print()
   ### Return
   return(gons0)
 }
@@ -134,8 +134,8 @@ plotStateMap <- function(
   plot0 <- plot0 + theme0
   print(xLab0)
   print(yLab0)
-  plot0 <- plot0 + xlab(xLab0[[1]]) + ylab(yLab0[[1]])
-  plot0 <- plot0 + ggtitle(ggTitle0[[1]], subTitle0[[1]])
+  plot0 <- plot0 + xlab(xLab0) + ylab(yLab0)
+  plot0 <- plot0 + ggtitle(ggTitle0, subTitle0)
   print("Got here 24")
 
   return(plot0)

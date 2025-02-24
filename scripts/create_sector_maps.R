@@ -121,12 +121,12 @@ create_sector_maps <- function(
 
   ### Maps -----------------------------------------------------
   #### Totals -----------------------------------------------------
-  stateMapList <- stateMapData |>
-    mutate(annual_impacts = (annual_impacts / 1e9)) |>
-    mutate(annual_impacts_percap = annual_impacts / 1e9 * 1e5 / pop ) |>
-    map2StateMap(); stateMapList
-  ### Save map
-  ggsave(plot=stateMapList, filename=mapTotPath, width=8, height=10)
+  # stateMapList <- stateMapData |>
+  #   mutate(annual_impacts = (annual_impacts / 1e9)) |>
+  #   mutate(annual_impacts_percap = annual_impacts / 1e9 * 1e5 / pop ) |>
+  #   map2StateMap(); stateMapList
+  # ## Save map
+  # ggsave(plot=stateMapList, filename=mapTotPath, width=8, height=10)
 
 
 
@@ -138,16 +138,16 @@ create_sector_maps <- function(
     mutate(annual_impacts_percap = annual_impacts / pop) |>
     addData2Map(join0="state_lc"); sectorMapsData |> glimpse()
   ### Get maps
-  sectorMaps <- sectorMapsData |> getSectorMaps()
-  ### View map
-  # sectorMaps$`CIL Agriculture`
-  ### Save maps
-  sectors |> walk(function(sector_i, map_i=sectorMaps[[sector_i]]){
-    sector_i |> print()
-    ggsave(plot=map_i, filename=mapSectPath |> str_replace("\\*", sector_i), width=8, height=10)
-  })
+  # sectorMaps <- sectorMapsData |> getSectorMaps()
+  # ### View map
+  # # sectorMaps$`CIL Agriculture`
+  # ### Save maps
+  # sectors |> walk(function(sector_i, map_i=sectorMaps[[sector_i]]){
+  #   sector_i |> print()
+  #   ggsave(plot=map_i, filename=mapSectPath |> str_replace("\\*", sector_i), width=8, height=10)
+  # })
 
   ###### Return ######
-  return(resultsList)
+  #return(resultsList)
 } ### End function
 ###### End File ######

@@ -179,14 +179,14 @@ jobs:
           '
 
 
-      - name: Upload Scenario Results
-        # if: |
-        #   inputs.doScenarios == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: scenario_results
-          path: |
-            ./data_tests/*
+      # - name: Upload Scenario Results
+      #   # if: |
+      #   #   inputs.doScenarios == 'true'
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: scenario_results
+      #     path: |
+      #       ./data_tests/*
 
 
 
