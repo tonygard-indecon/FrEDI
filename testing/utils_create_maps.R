@@ -132,6 +132,8 @@ plotStateMap <- function(
     ) ### End scale_fill_gradient2
   print("Got here 23")
   plot0 <- plot0 + theme0
+  print(xLab0)
+  print(yLab0)
   plot0 <- plot0 + xlab(xLab0[[1]]) + ylab(yLab0[[1]])
   plot0 <- plot0 + ggtitle(ggTitle0[[1]], subTitle0[[1]])
   print("Got here 24")
