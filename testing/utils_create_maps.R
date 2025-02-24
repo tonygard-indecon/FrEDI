@@ -190,6 +190,7 @@ map2StateMap <- function(
   })
   ## |> set_names(names0)
   list0 |> print()
+  list0 <- set_names(names0)
   # ### Add plot 1 to list
   # list0[["totals"]] <- plot1
   print("GOT HERE4")
