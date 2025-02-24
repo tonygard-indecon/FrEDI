@@ -116,6 +116,7 @@ plotStateMap <- function(
     theme0    = getMapTheme()
 ){
   plot0 <- df0 |> ggplot(aes(long, lat, group=group))
+  print("Got here 22")
   ### Create plot 1
   plot0 <- plot0 +
     geom_polygon(aes(fill=.data[[col0]]), color=outline) +
@@ -129,9 +130,12 @@ plotStateMap <- function(
       n.breaks = colors0[["n.breaks"]],
       guide    = guide_colorsteps(ticks=TRUE, ticks.linewidth=1, show.limits=TRUE)
     ) ### End scale_fill_gradient2
+  print("Got here 23")
   plot0 <- plot0 + theme0
   plot0 <- plot0 + xlab(xLab0[[1]]) + ylab(yLab0[[1]])
   plot0 <- plot0 + ggtitle(ggTitle0[[1]], subTitle0[[1]])
+  print("Got here 24")
+
   return(plot0)
 }
 
@@ -169,6 +173,7 @@ map2StateMap <- function(
   print("GOT HERE3")
   df0 |> glimpse()
   print(names0)
+  browser()
   list0  <- cols0 |> length() |> seq_len() |> map(function(i, col_i=cols0[[i]]){
     df0 |> plotStateMap(
       col0      = col_i,
@@ -182,7 +187,9 @@ map2StateMap <- function(
       subTitle0 = subTitle0[[i]],
       theme0    = theme0
     ) ### End plotStateMap
-  }) |> set_names(names0)
+  })
+  ## |> set_names(names0)
+  list0 |> print()
   # ### Add plot 1 to list
   # list0[["totals"]] <- plot1
   print("GOT HERE4")
