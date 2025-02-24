@@ -173,7 +173,7 @@ map2StateMap <- function(
   print("GOT HERE3")
   df0 |> glimpse()
   print(names0)
-  browser()
+  #browser()
   list0  <- cols0 |> length() |> seq_len() |> map(function(i, col_i=cols0[[i]]){
     df0 |> plotStateMap(
       col0      = col_i,
